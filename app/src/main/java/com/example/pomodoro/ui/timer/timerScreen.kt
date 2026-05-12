@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layout
 import com.example.pomodoro.viewmodel.EstadoTimer
 import com.example.pomodoro.viewmodel.TimerUiState
+import java.util.Timer
 
 @Composable
 fun TimerScreen(
@@ -18,7 +19,22 @@ fun TimerScreen(
     onReset: () -> Unit
 
 ){
-    Column(modifier = Modifier.fillMaxSize()) { }
+    Column(modifier = Modifier.fillMaxSize()){
+        TimerCircle(
+            time=uiState.time,
+            timer=uiState.timerState
+        )
+        TimerControls(
+            onPlay = onPlay,
+            onSkip = onSkip,
+            onPause = onPause,
+            onReset = onReset,
+            play = uiState.play
+        )
+        SessionBlocks(
+            block = uiState.block
+        )
+    }
 }
 
 @Composable
